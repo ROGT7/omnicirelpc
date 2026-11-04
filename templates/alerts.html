@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Alertes Crypto - OmniCirelPC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0d1117;
+            --card: rgba(255, 255, 255, 0.06);
+            --stroke: rgba(255, 255, 255, 0.12);
+            --accent: #5be7c4;
+            --accent-2: #8aa2ff;
+            --text: #e6edf3;
+            --muted: #9fb0c3;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: radial-gradient(100% 100% at 20% 20%, #1a2233 0%, #0d1117 45%, #0a0f18 100%);
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 22px;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--stroke);
+            box-shadow: 0 18px 30px rgba(0,0,0,0.25);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        .table th,
+        .table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--stroke);
+            font-size: 0.9em;
+        }
+
+        .table th {
+            background: rgba(255,255,255,0.06);
+            text-align: left;
+        }
+
+        .table tr:nth-child(even) {
+            background: rgba(255,255,255,0.04);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: none;
+            margin-top: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.14);
+            color: var(--text);
+        }
+
+        .field-help {
+            display: block;
+            font-size: 0.8em;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
+
+        .back-link {
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .toolbar {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="theme-dark">
+	<div class="container">
+		<h1 class="page-title">🔔 Alertes Crypto personnalisées</h1>
+		<p class="subtitle">Vous recevez des emails lorsque vos cryptos suivies dépassent les seuils que vous avez définis.</p>
+
+		<div class="toolbar">
+			<button type="button" class="btn btn-secondary" id="theme-toggle">Mode clair / sombre</button>
+		</div>
+
+		<div class="grid">
+			<div class="card">
+				<h2>Mes alertes</h2>
+				<table class="table">
+					<tr>
+						<th>Symbole</th>
+						<th>Direction</th>
+						<th>Seuil (%)</th>
+						<th>Active</th>
+					</tr>
+					{% for alert in alerts %}
+					<tr>
+						<td>{{ alert[2] }}</td>
+						<td>{{ alert[3] }}</td>
+						<td>{{ "%.2f"|format(alert[4]) }}</td>
+						<td>{{ 'Oui' if alert[5] else 'Non' }}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+
+			<div class="card">
+				<h2>Ajouter / mettre à jour une alerte</h2>
+				<form method="post">
+					<label>Choisir un symbole existant:
+						<select name="symbol_select">
+							<option value="">-- Sélectionner dans la liste --</option>
+							{% for s in symbols %}
+								<option value="{{ s }}">{{ s }}</option>
+							{% endfor %}
+						</select>
+						<span class="field-help">Liste des cryptos déjà détectées par OmniCirelPC. Choisissez ici si vous ne connaissez pas bien les symboles.</span>
+					</label>
+					<label>Ou saisir un symbole manuellement (ex: BTC, ETH, IMX):
+						<input type="text" name="symbol">
+						<span class="field-help">Pour les utilisateurs avancés qui veulent ajouter une nouvelle crypto même si elle n'est pas encore dans la liste.</span>
+					</label>
+					<label>Direction:
+						<select name="direction">
+							<option value="up">Hausse ≥ seuil</option>
+							<option value="down">Baisse ≤ -seuil</option>
+							<option value="both">Hausse ou baisse</option>
+						</select>
+						<span class="field-help">"Hausse" : alerte si le prix monte au-dessus du pourcentage choisi. "Baisse" : alerte si le prix chute. "Hausse ou baisse" : alerte dans les deux cas.</span>
+					</label>
+					<label>Seuil (%) :
+						<input type="number" step="0.1" name="threshold" value="10" required>
+						<span class="field-help">Exemple : 5 = alerte si la variation atteint au moins 5% (vers le haut ou le bas selon la direction).</span>
+					</label>
+					<label>
+						<input type="checkbox" name="active" checked> Activer l'alerte
+						<span class="field-help">Si décoché, l'alerte reste enregistrée mais aucun email ne sera envoyé.</span>
+					</label>
+					<button type="submit" class="btn">Enregistrer</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="card" style="margin-top: 20px;">
+			<h2>Guide d'utilisation des alertes</h2>
+			<ol>
+				<li><strong>Symbole</strong> : choisissez une crypto dans la liste ou saisissez un symbole manuellement.</li>
+				<li><strong>Direction</strong> : indiquez si vous voulez une alerte en cas de hausse, de baisse ou dans les deux sens.</li>
+				<li><strong>Seuil (%)</strong> : renseignez la variation minimale en pourcentage (par exemple 5 = mouvement de 5% ou plus).</li>
+				<li><strong>Activer l'alerte</strong> : cochez pour recevoir des emails, décochez pour mettre l'alerte en pause sans la supprimer.</li>
+				<li><strong>Enregistrer</strong> : cliquez sur Enregistrer. Si une alerte existe déjà pour ce symbole, elle sera automatiquement mise à jour.</li>
+			</ol>
+		</div>
+
+		<div class="back-link">
+			<a href="{{ url_for('dashboard') }}">⬅ Retour au dashboard</a>
+		</div>
+	</div>
+
+	<script>
+		const toggle = document.getElementById('theme-toggle');
+		if (toggle) {
+			const saved = localStorage.getItem('alerts_theme');
+			if (saved === 'light') {
+				document.body.classList.remove('theme-dark');
+				document.body.classList.add('theme-light');
+			}
+			toggle.addEventListener('click', () => {
+				const isDark = document.body.classList.contains('theme-dark');
+				document.body.classList.toggle('theme-dark', !isDark);
+				document.body.classList.toggle('theme-light', isDark);
+				localStorage.setItem('alerts_theme', isDark ? 'light' : 'dark');
+			});
+		}
+	</script>
+</body>
+</html>

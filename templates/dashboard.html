@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - OmniCirelPC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #0d1117;
+            --card: rgba(255, 255, 255, 0.06);
+            --stroke: rgba(255, 255, 255, 0.12);
+            --accent: #5be7c4;
+            --accent-2: #8aa2ff;
+            --text: #e6edf3;
+            --muted: #9fb0c3;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(100% 100% at 20% 20%, #1a2233 0%, #0d1117 45%, #0a0f18 100%);
+            min-height: 100vh;
+            color: var(--text);
+        }
+        
+        .navbar {
+            background: linear-gradient(90deg, rgba(91, 231, 196, 0.08), rgba(138, 162, 255, 0.08));
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--stroke);
+        }
+        
+        .navbar h1 {
+            font-size: 1.8em;
+            color: var(--accent);
+        }
+        
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .navbar .user-info span {
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: var(--text);
+        }
+        
+        .navbar .user-info .premium {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            position: relative;
+            background: var(--card);
+            padding: 22px;
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--stroke);
+            text-align: left;
+            overflow: hidden;
+        }
+        
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(91, 231, 196, 0.12), rgba(138, 162, 255, 0.08));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .stat-card:hover::after {
+            opacity: 1;
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: rgba(91, 231, 196, 0.15);
+            color: var(--accent);
+            font-size: 18px;
+            border: 1px solid var(--stroke);
+        }
+
+        .stat-card h3 {
+            font-size: 2.2em;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        
+        .stat-card p {
+            color: var(--muted);
+            font-size: 0.95em;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .content-card {
+            background: var(--card);
+            padding: 22px;
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--stroke);
+            transition: all 0.3s ease;
+            box-shadow: 0 18px 30px rgba(0,0,0,0.25);
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+        }
+        
+        .content-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .content-card .category {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+        
+        .content-card .timestamp {
+            font-size: 0.8em;
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+        
+        .content-card .content {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .content-card .trend-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .trend-score .score {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .trend-score .high {
+            color: var(--accent);
+        }
+        
+        .trend-score .medium {
+            color: #ffd166;
+        }
+        
+        .trend-score .low {
+            color: #ff6b6b;
+        }
+        
+        .ads-banner {
+            background: rgba(255,255,255,0.06);
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 0.9em;
+            border: 1px dashed var(--stroke);
+        }
+
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0 25px 0;
+        }
+
+        .ads-card {
+            background: rgba(0,0,0,0.35);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px dashed rgba(255,255,255,0.25);
+            font-size: 0.9em;
+        }
+
+        .ads-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .ads-card .ads-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+            margin-bottom: 6px;
+        }
+        
+        .upgrade-banner {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+        
+        .upgrade-banner a {
+            color: #0b111a;
+            text-decoration: none;
+            background: rgba(255,255,255,0.22);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,255,0,0.3);
+        }
+        
+        .export-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff5252);
+            color: white;
+        }
+        
+        .export-btn:hover {
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+        
+        .change-badge {
+            margin-left: 8px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.6);
+            font-size: 0.85em;
+        }
+        
+        .change-positive {
+            color: #00ff00;
+        }
+        
+        .change-negative {
+            color: #ff4d4d;
+        }
+        
+        .change-neutral {
+            color: #ffffff;
+        }
+        .chip {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--stroke);
+            font-size: 0.82em;
+            margin-right: 6px;
+            margin-top: 6px;
+        }
+        .chip.badge {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            border: none;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
+            margin: 10px 0 12px 0;
+        }
+        .metric {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--stroke);
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 0.9em;
+        }
+        .metric strong {
+            display: block;
+            font-size: 0.95em;
+            color: var(--text);
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0 10px 0;
+        }
+        .tab-btn {
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--stroke);
+            background: rgba(255,255,255,0.06);
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            border: none;
+            box-shadow: 0 8px 20px rgba(91,231,196,0.25);
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🚀 OmniCirelPC</h1>
+        <div class="user-info">
+            <span>👤 {{ email }}</span>
+            {% if is_premium %}
+                <span class="premium">⭐ PREMIUM</span>
+            {% else %}
+                <span>🆓 Gratuit</span>
+            {% endif %}
+            <a href="/logout" class="btn">Déconnexion</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        {% if not is_premium %}
+            <div class="upgrade-banner">
+                🚀 Passez à Premium pour un accès illimité !
+                <a href="/premium">S'abonner 9,99€/mois</a>
+            </div>
+        {% endif %}
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">📊</div>
+                    <div>
+                        <p style="color: var(--muted); font-size: 0.95em;">Volume d'analyse</p>
+                        <h3>{{ (news_data|length + crypto_data|length) }}</h3>
+                    </div>
+                </div>
+                <p>Articles + signaux crypto passés en revue.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">📈</div>
+                    <div>
+                        <p style="color: var(--muted); font-size: 0.95em;">Impact moyen</p>
+                        <h3>{% if avg_impact is not none %}{{ "%.0f"|format(avg_impact) }}%{% else %}N/A{% endif %}</h3>
+                    </div>
+                </div>
+                <p>Score moyen des tendances détectées.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">🪙</div>
+                    <div>
+                        <p style="color: var(--muted); font-size: 0.95em;">Couverture marché</p>
+                        <h3>{{ crypto_count }}</h3>
+                    </div>
+                </div>
+                <p>Cryptos activement monitorées.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">⚡</div>
+                    <div>
+                        <p style="color: var(--muted); font-size: 0.95em;">Dernière mise à jour</p>
+                        <h3>{% if last_update %}{{ last_update }}{% else %}Aucune donnée{% endif %}</h3>
+                    </div>
+                </div>
+                <p>Horodatage de la dernière collecte.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 10px 0 20px 0;">
+            <a href="/run-scraper" class="btn">🔄 Actualiser les données (Scraper temps réel)</a>
+            <a href="/alerts" class="btn" style="margin-left: 10px;">🔔 Configurer mes alertes crypto</a>
+        </div>
+        
+        {% if not is_premium %}
+            <div class="ads-banner">
+                📢 Publicité - Découvrez nos partenaires pour débloquer plus de fonctionnalités
+            </div>
+            <div class="ads-grid">
+                <div class="ads-card">
+                    <div class="ads-tag">Publicité</div>
+                    <h3>Espace partenaire #1</h3>
+                    <p>Espace réservé pour une bannière ou un lien sponsorisé. Visible uniquement en version gratuite.</p>
+                </div>
+                <div class="ads-card">
+                    <div class="ads-tag">Astuce</div>
+                    <h3>Envie de plus de signaux ?</h3>
+                    <p>Avec OmniCirelPC Premium, supprimez les pubs et débloquez davantage de cryptos suivies et d’analyses.</p>
+                </div>
+            </div>
+        {% endif %}
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="news">📰 News & Événements</button>
+            <button class="tab-btn" data-tab="crypto">🪙 Marché Crypto</button>
+        </div>
+
+        <div id="tab-news" class="tab-panel active">
+            <div class="content-grid">
+                {% for item in news_data %}
+                    <div class="content-card">
+                        <div class="category">{{ item[3] or 'Technology' }}</div>
+                        {% if item|length > 4 and item[4] %}
+                            <div class="category" style="margin-left: 5px; background: rgba(0,0,0,0.4);">Priorité : {{ item[4] }}</div>
+                        {% endif %}
+                        <h4>{{ item[1] }}</h4>
+                        <div class="timestamp">{{ item[5] or 'Il y a quelques heures' }}</div>
+                        <div class="content">
+                            {{ item[2][:600] }}{% if item[2]|length > 600 %}...{% endif %}
+                        </div>
+                        {% set news_score = (item[13] if item|length > 13 else None) %}
+                        {% if news_score is not none %}
+                            {% set trend_score = (news_score * 100) %}
+                            <div class="trend-score" style="margin-bottom:6px;">
+                                <span>Score:</span>
+                                {% if trend_score > 80 %}
+                                    <span class="score high">🔥 {{ "%.0f"|format(trend_score) }}%</span>
+                                {% elif trend_score > 60 %}
+                                    <span class="score medium">⚡ {{ "%.0f"|format(trend_score) }}%</span>
+                                {% else %}
+                                    <span class="score low">📉 {{ "%.0f"|format(trend_score) }}%</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <div style="margin-top:8px;">
+                            {% if news_score is not none and news_score >= 2.5 %}
+                                <span class="chip badge">Top mover</span>
+                            {% endif %}
+                            {% if item[11] is not none and item[11] >= 0.15 %}
+                                <span class="chip">Top volume</span>
+                            {% endif %}
+                            {% if item[9] is not none and item[9] >= 5000000000 %}
+                                <span class="chip">Top cap</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="tab-crypto" class="tab-panel">
+            {% if is_premium %}
+                <div style="text-align: right; margin-bottom: 10px;">
+                    {% if request.args.get('view_all_crypto') == '1' %}
+                        <a href="{{ url_for('dashboard') }}" class="btn">Voir seulement le top 140</a>
+                    {% else %}
+                        <a href="{{ url_for('dashboard', view_all_crypto=1) }}" class="btn">Voir toutes les cryptos suivies</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="content-grid">
+                {% for item in crypto_data %}
+                    <div class="content-card">
+                        <div class="category">{{ item.category or 'Crypto' }}</div>
+                        {% if item.priority %}
+                            <div class="category" style="margin-left: 5px; background: rgba(0,0,0,0.4);">Priorité : {{ item.priority }}</div>
+                        {% endif %}
+                        {% set change_class = 'change-neutral' %}
+                        {% if item.change_val is not none and item.change_val > 0 %}
+                            {% set change_class = 'change-positive' %}
+                        {% elif item.change_val is not none and item.change_val < 0 %}
+                            {% set change_class = 'change-negative' %}
+                        {% endif %}
+                        <h4>
+                            {{ item.title }}
+                            {% if item.change_str %}
+                                <span class="change-badge {{ change_class }}">{{ item.change_str }}</span>
+                            {% endif %}
+                        </h4>
+                        <div class="timestamp">{{ item.timestamp or 'Il y a quelques heures' }}</div>
+                        <div style="margin:8px 0 4px 0;">
+                            {% if item.score is not none and item.score >= 2.5 %}
+                                <span class="chip badge">Top mover</span>
+                            {% endif %}
+                            {% if item.vol_mcap is not none and item.vol_mcap >= 0.15 %}
+                                <span class="chip">Top volume</span>
+                            {% endif %}
+                            {% if item.market_cap is not none and item.market_cap >= 5000000000 %}
+                                <span class="chip">Top cap</span>
+                            {% endif %}
+                        </div>
+                        <div class="metric-grid">
+                            {% if item.price %}<div class="metric"><strong>Prix</strong>${{ '%.4f'|format(item.price) }}</div>{% endif %}
+                            {% if item.market_cap %}<div class="metric"><strong>Market cap</strong>${{ '%.0f'|format(item.market_cap) }}</div>{% endif %}
+                            {% if item.volume %}<div class="metric"><strong>Volume 24h</strong>${{ '%.0f'|format(item.volume) }}</div>{% endif %}
+                            {% if item.vol_mcap is not none %}<div class="metric"><strong>Vol/MCap</strong>{{ '%.2f'|format(item.vol_mcap*100) }}%</div>{% endif %}
+                            {% if item.distance_ath is not none %}<div class="metric"><strong>Distance ATH</strong>{{ '%.1f'|format(item.distance_ath) }}%</div>{% endif %}
+                            {% if item.distance_atl is not none %}<div class="metric"><strong>Distance ATL</strong>{{ '%.1f'|format(item.distance_atl) }}%</div>{% endif %}
+                            {% if item.score is not none %}<div class="metric"><strong>Score</strong>{{ '%.2f'|format(item.score) }}</div>{% endif %}
+                        </div>
+                        <div class="content">
+                            {{ item.content[:600] }}{% if item.content|length > 600 %}...{% endif %}
+                        </div>
+                        {% if item.impact is not none %}
+                            {% set trend_score = (item.impact|float * 100) %}
+                            <div class="trend-score">
+                                <span>Tendance:</span>
+                                {% if trend_score > 80 %}
+                                    <span class="score high">🔥 {{ "%.0f"|format(trend_score) }}%</span>
+                                {% elif trend_score > 60 %}
+                                    <span class="score medium">⚡ {{ "%.0f"|format(trend_score) }}%</span>
+                                {% else %}
+                                    <span class="score low">📉 {{ "%.0f"|format(trend_score) }}%</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        {% if not is_premium %}
+            <div class="ads-banner">
+                📢 Vous utilisez la version gratuite. Passez à Premium pour des analyses illimitées !
+            </div>
+        {% endif %}
+        
+        {% if is_premium %}
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="/export" class="btn export-btn">📊 Exporter les données (CSV)</a>
+            </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        // Tabs switch
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-tab');
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabPanels.forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(`tab-${target}`).classList.add('active');
+            });
+        });
+
+        // Animation des cartes au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.content-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Mise à jour automatique toutes les 30 secondes
+        setTimeout(() => {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+{
+  "title": "Récap crypto semaine 41 (2026) : un rebond modeste effacé en partie le 7 octobre",
+  "description": "Bitcoin +2,27 % et Ethereum +0,74 % du 30/09 au 07/10/2026 (clôtures 00:00 UTC, CoinGecko), Cardano en tête, puis repli marqué en séance le 7 octobre.",
+  "published": "2026-10-07",
+  "period_label": "du 30 septembre 2026 00:00 UTC au 7 octobre 2026 00:00 UTC (7 jours)",
+  "observed_at": "2026-10-07 vers 13:07 UTC",
+  "intro": "Sur les sept jours allant du 30 septembre au 7 octobre 2026 (points quotidiens CoinGecko de 00:00 UTC), 6 des 8 grandes cryptomonnaies sélectionnées ici (stablecoins exclus) ont progressé. Bitcoin gagne +2,27 % (83 640 $ → 85 540 $) et Ethereum +0,74 %. La semaine a culminé le 5 octobre pour la plupart des actifs, avant un net recul pendant la séance du 7 octobre, observé jusqu'à 13:07 UTC et traité séparément ci-dessous.",
+  "table": {
+    "caption": "Variation sur 7 jours (30/09 00:00 UTC → 07/10 00:00 UTC, en USD)",
+    "columns": [
+      "Actif",
+      "30/09",
+      "07/10",
+      "Variation 7 j",
+      "Point bas / haut (jour)"
+    ],
+    "rows": [
+      [
+        "Bitcoin (BTC)",
+        "83 640 $",
+        "85 540 $",
+        "+2,27 %",
+        "01/10 / 05/10"
+      ],
+      [
+        "Ethereum (ETH)",
+        "2 677 $",
+        "2 697 $",
+        "+0,74 %",
+        "03/10 / 05/10"
+      ],
+      [
+        "BNB (BNB)",
+        "758,45 $",
+        "779,20 $",
+        "+2,74 %",
+        "30/09 / 05/10"
+      ],
+      [
+        "XRP (XRP)",
+        "1,49 $",
+        "1,50 $",
+        "+0,45 %",
+        "03/10 / 05/10"
+      ],
+      [
+        "Solana (SOL)",
+        "119,09 $",
+        "120,68 $",
+        "+1,33 %",
+        "01/10 / 05/10"
+      ],
+      [
+        "Dogecoin (DOGE)",
+        "0,0939 $",
+        "0,0937 $",
+        "−0,19 %",
+        "04/10 / 05/10"
+      ],
+      [
+        "Cardano (ADA)",
+        "0,2444 $",
+        "0,2675 $",
+        "+9,43 %",
+        "04/10 / 06/10"
+      ],
+      [
+        "Chainlink (LINK)",
+        "14,60 $",
+        "13,96 $",
+        "−4,42 %",
+        "03/10 / 30/09"
+      ]
+    ],
+    "note": "Source : CoinGecko /coins/{id}/market_chart (vs_currency=usd, interval=daily), points quotidiens de 00:00 UTC. Points bas et hauts calculés sur ces 8 points quotidiens uniquement, pas sur les extrêmes intrajournaliers. Stablecoins exclus."
+  },
+  "sections": [
+    {
+      "heading": "Ce que montre la semaine",
+      "paragraphs": [
+        "Le mouvement hebdomadaire est resté contenu : hors Cardano et Chainlink, toutes les variations du tableau se situent entre −0,19 % et +2,74 %. Bitcoin a atteint son plus haut de la période le 5 octobre à 86 490 $, soit à peine sous son plus haut quotidien des 30 derniers jours (86 597 $ le 22/09).",
+        "Cardano se distingue avec +9,43 % sur la période (0,2444 $ → 0,2675 $), avec un plus haut le 06/10. À l'inverse, Chainlink recule de 4,42 % et n'a jamais retrouvé son niveau du 30 septembre au cours de la semaine.",
+        "Ethereum a sous-performé Bitcoin : le ratio ETH/BTC calculé à partir des mêmes points passe de 0,03201 à 0,03153 (−1,50 %)."
+      ]
+    },
+    {
+      "heading": "Le 7 octobre : repli en séance (hors période hebdomadaire)",
+      "paragraphs": [
+        "Entre le point de 00:00 UTC du 7 octobre et la dernière observation (vers 13:07 UTC), Bitcoin recule de 2,38 % à 83 503 $, Ethereum de 4,87 % à 2 566 $ et Cardano de 4,93 %. Ces chiffres portent sur une douzaine d'heures et ne sont pas des rendements hebdomadaires.",
+        "Instantané CoinGecko /global à 2026-10-07 12:57 UTC : capitalisation totale d'environ 2,85 billions de dollars, variation sur 24 h de −5,90 %, dominance de Bitcoin à 58,8 % et d'Ethereum à 11,0 %. La dominance élevée de Bitcoin est cohérente avec un recul plus prononcé d'Ethereum et de plusieurs altcoins sur la même journée."
+      ]
+    },
+    {
+      "heading": "Pourquoi deux chiffres « 7 jours » peuvent diverger",
+      "paragraphs": [
+        "Le champ « 7 jours » glissant de CoinGecko /coins/markets (relevé à 2026-10-07 13:03 UTC) inclut la baisse du 7 octobre : il affiche par exemple +2,25 % pour Cardano et −0,50 % pour Bitcoin, contre +9,43 % et +2,27 % sur la fenêtre fixe 30/09 → 07/10 00:00 UTC.",
+        "Avant de comparer des performances, vérifiez donc la fenêtre exacte (début, fin, fuseau horaire) : sur un marché qui bouge de plusieurs pour cent en quelques heures, décaler la fin de la période de 13 heures peut changer le classement des actifs."
+      ]
+    },
+    {
+      "heading": "Contexte sur 30 jours",
+      "paragraphs": [
+        "Sur 30 jours (07/09 → 07/10 00:00 UTC), Bitcoin progresse de +6,49 % et Ethereum de +7,29 %. Les deux actifs ont touché leur point bas quotidien de la période le 16/09 (75 590 $ pour BTC, 2 397 $ pour ETH) et leur point haut le 22/09.",
+        "La semaine 41 s'inscrit donc dans une phase de consolidation sous les sommets de fin septembre plutôt que dans une nouvelle tendance. À surveiller dans les prochains jours : la capacité de Bitcoin à repasser au-dessus de ses plus hauts quotidiens du mois et l'évolution du ratio ETH/BTC."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "CoinGecko API — /coins/{id}/market_chart",
+      "url": "https://docs.coingecko.com/v3.0.1/reference/coins-id-market-chart",
+      "note": "historique quotidien USD (8 et 31 jours), requêtes du 2026-10-07 entre 13:05 et 13:10 UTC"
+    },
+    {
+      "label": "CoinGecko API — /coins/markets",
+      "url": "https://docs.coingecko.com/v3.0.1/reference/coins-markets",
+      "note": "variations glissantes 24 h et 7 j, dernière mise à jour 2026-10-07 13:03 UTC"
+    },
+    {
+      "label": "CoinGecko API — /global",
+      "url": "https://docs.coingecko.com/v3.0.1/reference/crypto-global",
+      "note": "capitalisation totale et dominance, mise à jour 2026-10-07 12:57 UTC"
+    },
+    {
+      "label": "Requête historique Bitcoin (8 jours, quotidien)",
+      "url": "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=8&interval=daily",
+      "note": "même requête pour ethereum, binancecoin, ripple, solana, dogecoin, cardano, chainlink ; days=31 pour le contexte 30 jours"
+    },
+    {
+      "label": "Requête marchés (top 20, variations 24 h et 7 j)",
+      "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&price_change_percentage=24h,7d"
+    },
+    {
+      "label": "Requête données globales",
+      "url": "https://api.coingecko.com/api/v3/global"
+    }
+  ],
+  "method": "Variations calculées par OmniCirelPC à partir des prix USD renvoyés par l'API publique CoinGecko : (prix final / prix initial − 1) × 100. Les prix sont des agrégats CoinGecko et peuvent différer de ceux d'une plateforme d'échange donnée."
+}

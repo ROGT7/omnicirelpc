@@ -1,0 +1,4 @@
+# Dépendances optionnelles du rail M2M (API payante x402, module m2m.py).
+# À installer en plus de requirements.txt UNIQUEMENT si X402_PAY_TO est posé :
+#   pip install -r requirements-m2m.txt
+x402[flask,evm,httpx]>=2.26.0

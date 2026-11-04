@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer mon compte – OmniCirelPC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card: rgba(255, 255, 255, 0.06);
+            --stroke: rgba(255, 255, 255, 0.12);
+            --accent: #5be7c4;
+            --accent-2: #8aa2ff;
+            --text: #e6edf3;
+            --muted: #9fb0c3;
+            --danger: #ff6b6b;
+        }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 28px 18px 56px;
+            line-height: 1.65;
+            color: var(--text);
+            background: radial-gradient(100% 100% at 20% 20%, #1a2233 0%, #0d1117 45%, #0a0f18 100%);
+        }
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            color: var(--muted);
+        }
+        form {
+            margin-top: 1.2rem;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 18px 18px;
+            border: 1px solid var(--stroke);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 14px 26px rgba(0,0,0,0.22);
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--stroke);
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.08);
+            color: var(--text);
+            transition: all 0.25s ease;
+        }
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(91, 231, 196, 0.18);
+            background: rgba(255,255,255,0.12);
+        }
+        input[type="password"]::placeholder {
+            color: var(--muted);
+        }
+        button {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.28);
+        }
+        .danger-box {
+            background: rgba(255,107,107,0.15);
+            border: 1px solid rgba(255,107,107,0.4);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        .flash {
+            background: rgba(138,162,255,0.14);
+            border-radius: 12px;
+            border: 1px solid rgba(138,162,255,0.35);
+            padding: 12px 14px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Supprimer mon compte</h1>
+
+    <div class="card">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash">
+                    {% for message in messages %}
+                        <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <p>
+            Cette action est <strong>définitive</strong>. Votre compte OmniCirelPC et les données
+            associées (par exemple vos alertes personnalisées) seront supprimés de nos bases.
+        </p>
+        <div class="danger-box">
+            <strong>Attention :</strong> après la suppression, vous devrez recréer un compte si vous
+            souhaitez utiliser à nouveau le service.
+        </div>
+
+        <form method="post">
+            <label for="password">Mot de passe actuel</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Confirmer la suppression du compte</button>
+        </form>
+    </div>
+
+    <p style="margin-top:1.5rem;">
+        <a href="/dashboard">⬅ Retour au tableau de bord</a>
+    </p>
+</body>
+</html>

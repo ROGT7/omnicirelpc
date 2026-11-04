@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+{% include '_recap_head.html' %}
+    <title>Récaps hebdomadaires du marché crypto - OmniCirelPC</title>
+    <meta name="description" content="Récapitulatifs hebdomadaires en français du marché des cryptomonnaies : variations sur 7 jours, contexte et sources CoinGecko datées en UTC.">
+    <link rel="canonical" href="{{ site_url }}/recaps">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/recaps">Récaps marché</a>
+            <a href="/register">Créer un compte</a>
+            <a href="/privacy">Confidentialité</a>
+        </nav>
+        <h1>Récaps hebdomadaires du marché crypto</h1>
+        <p class="muted">Chaque récap s'appuie sur des données publiques CoinGecko, avec la période et l'heure d'observation (UTC) indiquées pour chaque chiffre. Contenu informatif, pas un conseil en investissement.</p>
+        {% for recap in recaps %}
+        <div class="card">
+            <h2><a href="/recaps/{{ recap.slug }}">{{ recap.title }}</a></h2>
+            <p class="muted">Publié le {{ recap.published }} · Période : {{ recap.period_label }}</p>
+            <p>{{ recap.description }}</p>
+        </div>
+        {% else %}
+        <div class="card"><p>Aucun récap publié pour le moment.</p></div>
+        {% endfor %}
+    </div>
+</body>
+</html>

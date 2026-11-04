@@ -1,0 +1,108 @@
+{
+  "title": "Récap crypto semaine 43 (2026) : Bitcoin stable, nouveaux plus bas sur 30 jours pour la plupart des altcoins",
+  "description": "Du 14/10 au 21/10/2026 (00:00 UTC, CoinGecko), Bitcoin finit quasi stable (−0,21 %) tandis que Cardano (−5,08 %) et Chainlink (−4,35 %) reculent ; ratio ETH/BTC au plus bas de la série.",
+  "published": "2026-10-21",
+  "period_label": "du 14 octobre 2026 00:00 UTC au 21 octobre 2026 00:00 UTC (7 jours)",
+  "observed_at": "2026-10-21 entre 13:04 et 13:08 UTC",
+  "intro": "Après deux semaines de baisse, la semaine du 14 au 21 octobre 2026 (points quotidiens CoinGecko de 00:00 UTC) est nettement plus calme : les 8 grandes cryptomonnaies suivies ici (stablecoins exclus) terminent toutes légèrement en recul, mais avec des écarts réduits. BNB (−0,07 %), Bitcoin (−0,21 %, 83 115 $ → 82 944 $) et Solana (−0,34 %) sont quasiment stables, tandis que Cardano (−5,08 %) et Chainlink (−4,35 %) ferment la marche. Pour 7 des 8 actifs, le point bas quotidien de la semaine tombe le 18 octobre, suivi d'un rebond de 1,9 % à 3,3 % jusqu'au 21 octobre.",
+  "table": {
+    "caption": "Variation sur 7 jours (14/10 00:00 UTC → 21/10 00:00 UTC, en USD)",
+    "columns": [
+      "Actif",
+      "14/10",
+      "21/10",
+      "Variation 7 j",
+      "Point bas (jour)",
+      "Rebond depuis le point bas"
+    ],
+    "rows": [
+      ["BNB (BNB)", "741,23 $", "740,74 $", "−0,07 %", "18/10", "+3,25 %"],
+      ["Bitcoin (BTC)", "83 115 $", "82 944 $", "−0,21 %", "18/10", "+1,89 %"],
+      ["Solana (SOL)", "106,75 $", "106,39 $", "−0,34 %", "18/10", "+2,93 %"],
+      ["Ethereum (ETH)", "2 497 $", "2 446 $", "−2,01 %", "18/10", "+1,92 %"],
+      ["XRP (XRP)", "1,365 $", "1,334 $", "−2,26 %", "18/10", "+3,22 %"],
+      ["Dogecoin (DOGE)", "0,0843 $", "0,0817 $", "−3,07 %", "18/10", "+3,12 %"],
+      ["Chainlink (LINK)", "12,88 $", "12,32 $", "−4,35 %", "18/10", "+2,83 %"],
+      ["Cardano (ADA)", "0,2358 $", "0,2238 $", "−5,08 %", "20/10", "+2,65 %"]
+    ],
+    "note": "Source : CoinGecko /coins/{id}/market_chart (vs_currency=usd, days=31, interval=daily), points quotidiens de 00:00 UTC. Actifs classés de la plus faible à la plus forte baisse. Le point haut de la période est le 14/10 pour les 8 actifs. Points bas et rebonds (point bas → 21/10 00:00 UTC) calculés sur ces 8 points quotidiens uniquement, pas sur les extrêmes intrajournaliers. Stablecoins exclus."
+  },
+  "sections": [
+    {
+      "heading": "Une semaine de consolidation, surtout pour Bitcoin",
+      "paragraphs": [
+        "L'écart entre le point quotidien le plus haut et le plus bas de la semaine mesure bien le changement de rythme : 2,10 % seulement pour Bitcoin (83 115 $ le 14/10, 81 408 $ le 18/10), contre 4,72 % entre ses points du 07/10 et du 09/10 la semaine précédente. Les altcoins restent plus agités : cet écart atteint 8,15 % pour Cardano, 7,50 % pour Chainlink et 6,39 % pour Dogecoin.",
+        "Le profil est le même pour presque tous les actifs : un recul régulier du 14 au 18 octobre, puis une reprise sur les trois derniers jours. Cardano fait exception avec un dernier point bas le 20/10 (0,2180 $), ce qui explique en partie qu'il finisse en dernière position."
+      ]
+    },
+    {
+      "heading": "Le repère des 81 700 $ cédé de peu, sans décrochage",
+      "paragraphs": [
+        "Le récap de la semaine 42 signalait la zone des 81 700 $, touchée deux fois en points quotidiens (09/10 et 13/10). Elle a été franchie à la baisse dès le 15/10 (81 604 $), puis le 17/10 (81 524 $) et le 18/10 (81 408 $), mais de moins de 0,4 % : le mouvement ressemble davantage à un glissement qu'à une rupture.",
+        "Sur 30 jours (21/09 → 21/10 00:00 UTC), Bitcoin reste dans la fourchette délimitée par ses points quotidiens du 21/09 (81 169 $) et du 22/09 (86 597 $). C'est le seul des 8 actifs suivis dont le point bas sur 30 jours n'a pas été inscrit cette semaine. Ces niveaux sont des repères descriptifs, pas des prévisions."
+      ]
+    },
+    {
+      "heading": "Altcoins : plus bas sur 30 jours et ratio ETH/BTC en recul",
+      "paragraphs": [
+        "Sept des huit actifs du tableau (tous sauf Bitcoin) ont touché cette semaine leur point quotidien le plus bas des 30 derniers jours : le 18/10 pour Ethereum, BNB, XRP, Solana, Dogecoin et Chainlink, le 20/10 pour Cardano. Sur 30 jours, Ethereum recule de −7,50 % (pour +2,19 % à Bitcoin), XRP de −5,39 %, Dogecoin de −6,36 %.",
+        "Le ratio ETH/BTC, calculé à partir des mêmes points quotidiens, glisse de 0,03004 à 0,02950 (−1,80 %), avec un plus bas à 0,02936 le 19/10. C'est la troisième semaine de recul consécutive dans nos récaps (0,03201 le 30/09, 0,03153 le 07/10). Les instantanés CoinGecko /global vont dans le même sens : dominance de Bitcoin d'environ 59,6 % le 21/10 à 13:07 UTC, contre 59,3 % le 14/10 vers 13:06 UTC ; Ethereum à 10,7 % contre 10,8 %. La capitalisation totale relevée est d'environ 2,83 billions de dollars, contre 2,79 billions une semaine plus tôt. Ce sont des instantanés ponctuels, pas des moyennes hebdomadaires."
+      ]
+    },
+    {
+      "heading": "Sur deux semaines, l'écart entre Bitcoin et le reste du marché se creuse",
+      "paragraphs": [
+        "Sur deux semaines (07/10 → 21/10 00:00 UTC), Bitcoin perd −3,04 %, BNB −4,94 % et Ethereum −9,29 %, tandis que Cardano (−16,33 %), Dogecoin (−12,75 %), Solana (−11,85 %), Chainlink (−11,77 %) et XRP (−10,86 %) reculent de plus de 10 %.",
+        "Autrement dit, la semaine 43 n'a pas inversé la tendance des deux semaines précédentes : elle l'a seulement ralentie. Une semaine calme après une baisse ne dit rien, à elle seule, de la suite ; c'est surtout l'évolution du ratio ETH/BTC et la tenue des plus bas du 18/10 qui permettront de juger si la pression sur les altcoins s'atténue."
+      ]
+    },
+    {
+      "heading": "Instantanés du 21 octobre : à ne pas confondre avec la semaine",
+      "paragraphs": [
+        "Les variations sur 24 heures glissantes de CoinGecko /coins/markets (mise à jour 2026-10-21 13:06 UTC) sont nettement positives : Bitcoin +2,83 %, Ethereum +3,84 %, XRP +5,03 %, Cardano +4,95 %. Elles couvrent seulement la journée écoulée et reflètent le rebond de fin de période, pas un rendement hebdomadaire.",
+        "Le champ « 7 jours » glissant de la même requête (fenêtre démarrant le 14/10 vers 13:06 UTC) affiche +0,01 % pour Bitcoin et −1,45 % pour Ethereum, proche de notre fenêtre fixe de 00:00 UTC. Dans le top 20 par capitalisation, les plus fortes variations 7 jours glissantes à cette heure sont celles de Monero (+7,54 %), Zcash (+4,25 %) et NEAR (+2,52 %), qui ne font pas partie de notre panel. Entre le point du 21/10 00:00 UTC et la dernière observation (vers 13:05 UTC), Bitcoin gagne +0,69 % (83 520 $) et Ethereum +0,97 %, sur environ 13 heures."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "CoinGecko API — /coins/{id}/market_chart",
+      "url": "https://docs.coingecko.com/v3.0.1/reference/coins-id-market-chart",
+      "note": "historique quotidien USD (31 jours), requêtes du 2026-10-21 entre 13:04 et 13:08 UTC"
+    },
+    {
+      "label": "CoinGecko API — /coins/markets",
+      "url": "https://docs.coingecko.com/v3.0.1/reference/coins-markets",
+      "note": "variations glissantes 24 h et 7 j, dernière mise à jour 2026-10-21 13:06 UTC"
+    },
+    {
+      "label": "CoinGecko API — /global",
+      "url": "https://docs.coingecko.com/v3.0.1/reference/crypto-global",
+      "note": "capitalisation totale et dominance, mise à jour 2026-10-21 13:07 UTC (valeurs du 14/10 : récap semaine 42)"
+    },
+    {
+      "label": "Requête historique Bitcoin (31 jours, quotidien)",
+      "url": "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=31&interval=daily",
+      "note": "même requête pour ethereum, binancecoin, ripple, solana, dogecoin, cardano, chainlink"
+    },
+    {
+      "label": "Requête marchés (top 20, variations 24 h et 7 j)",
+      "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&price_change_percentage=24h,7d"
+    },
+    {
+      "label": "Requête données globales",
+      "url": "https://api.coingecko.com/api/v3/global"
+    },
+    {
+      "label": "Récap OmniCirelPC semaine 42 (2026)",
+      "url": "https://omnicirelpc.onrender.com/recaps/2026-W42",
+      "note": "repère des 81 700 $, dominance et ratio ETH/BTC de la semaine précédente"
+    },
+    {
+      "label": "Récap OmniCirelPC semaine 41 (2026)",
+      "url": "https://omnicirelpc.onrender.com/recaps/2026-W41",
+      "note": "ratio ETH/BTC du 30/09"
+    }
+  ],
+  "method": "Variations calculées par OmniCirelPC à partir des prix USD renvoyés par l'API publique CoinGecko : (prix final / prix initial − 1) × 100. Écart de la semaine = (point quotidien le plus haut / point quotidien le plus bas − 1) × 100. Les prix sont des agrégats CoinGecko et peuvent différer de ceux d'une plateforme d'échange donnée."
+}

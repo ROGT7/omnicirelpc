@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+{% include '_recap_head.html' %}
+    <title>{{ recap.title }} - OmniCirelPC</title>
+    <meta name="description" content="{{ recap.description }}">
+    <link rel="canonical" href="{{ site_url }}/recaps/{{ recap.slug }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/recaps">Tous les récaps</a>
+            <a href="/register">Créer un compte</a>
+            <a href="/privacy">Confidentialité</a>
+        </nav>
+        <article>
+            <h1>{{ recap.title }}</h1>
+            <p class="muted">Publié le {{ recap.published }} · Période analysée : {{ recap.period_label }} · Données observées le {{ recap.observed_at }}</p>
+            <p>{{ recap.intro }}</p>
+
+            {% if recap.table %}
+            <div class="card">
+                <h2>{{ recap.table.caption }}</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr>{% for col in recap.table.columns %}<th>{{ col }}</th>{% endfor %}</tr></thead>
+                        <tbody>
+                        {% for row in recap.table.rows %}
+                            <tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if recap.table.note %}<p class="muted">{{ recap.table.note }}</p>{% endif %}
+            </div>
+            {% endif %}
+
+            {% for section in recap.sections %}
+            <div class="card">
+                <h2>{{ section.heading }}</h2>
+                {% for paragraph in section.paragraphs %}<p>{{ paragraph }}</p>{% endfor %}
+            </div>
+            {% endfor %}
+
+            <div class="card">
+                <h2>Sources et méthode</h2>
+                <ul class="list">
+                {% for source in recap.sources %}
+                    <li><a href="{{ source.url }}" rel="nofollow noopener" target="_blank">{{ source.label }}</a>{% if source.note %} — {{ source.note }}{% endif %}</li>
+                {% endfor %}
+                </ul>
+                <p class="muted">{{ recap.method }}</p>
+                <p class="muted">Ce récap est fourni à titre informatif. Il ne constitue pas un conseil en investissement ; les performances passées ne préjugent pas des performances futures.</p>
+            </div>
+
+            <div class="card">
+                <h2>Suivre le marché avec OmniCirelPC</h2>
+                <p>Le compte gratuit donne accès au tableau de bord (20 cryptos et 20 actualités). OmniCirelPC Premium ({{ premium_price }}) étend l'affichage à 140 cryptos (400 en vue complète) et 80 actualités, ajoute l'export CSV, l'envoi d'alertes e-mail lorsque vos seuils de variation sont franchis, et retire les encarts publicitaires du tableau de bord.</p>
+                <a href="/register" class="btn btn-primary">Créer un compte gratuit</a>
+                <a href="/recaps" class="btn btn-secondary">Autres récaps</a>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

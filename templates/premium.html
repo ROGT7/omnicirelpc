@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium - OmniCirelPC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #0d1117;
+            --card: rgba(255, 255, 255, 0.06);
+            --stroke: rgba(255, 255, 255, 0.12);
+            --accent: #5be7c4;
+            --accent-2: #8aa2ff;
+            --text: #e6edf3;
+            --muted: #9fb0c3;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(110% 120% at 20% 20%, #1a2233 0%, #0d1117 45%, #0a0f18 100%);
+            min-height: 100vh;
+            color: var(--text);
+        }
+        
+        .navbar {
+            background: rgba(9, 14, 24, 0.65);
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--stroke);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .navbar h1 {
+            font-size: 1.7em;
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .navbar .user-info a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 14px;
+            border: 1px solid var(--stroke);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar .user-info a:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-1px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 20px 60px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 70px 20px 40px;
+        }
+        
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 16px;
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 34px;
+            opacity: 0.92;
+            color: var(--muted);
+        }
+        
+        .pricing-card {
+            background: var(--card);
+            backdrop-filter: blur(14px);
+            padding: 42px;
+            border-radius: 24px;
+            border: 1px solid var(--stroke);
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 18px 38px rgba(0,0,0,0.28);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.2em;
+            letter-spacing: 0.02em;
+            color: var(--muted);
+        }
+
+        .pricing-card .price {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            margin: 16px 0 6px;
+        }
+        
+        .pricing-card .price span {
+            font-size: 0.35em;
+            color: var(--muted);
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--stroke);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+        }
+        
+        .features-list li:before {
+            content: "✅";
+            font-size: 1.1em;
+            color: var(--accent);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #0b111a;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 18px;
+            font-size: 1.05em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 12px 26px rgba(0,0,0,0.28);
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.32);
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 46px 0;
+        }
+        
+        .comparison-card {
+            background: rgba(255,255,255,0.06);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--stroke);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .comparison-card.premium {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.22);
+        }
+        
+        .comparison-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        
+        .comparison-card.premium h3 {
+            color: var(--accent);
+        }
+        
+        .comparison-card ul {
+            list-style: none;
+            color: var(--muted);
+        }
+        
+        .comparison-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--stroke);
+        }
+        
+        .comparison-card .yes:before {
+            content: "✅ ";
+            color: var(--accent);
+        }
+        
+        .comparison-card .no:before {
+            content: "❌ ";
+            color: #ff6b6b;
+        }
+        
+        .testimonials {
+            margin: 48px 0;
+        }
+        
+        .testimonials h3 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 28px;
+            color: var(--text);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .testimonial {
+            background: rgba(255,255,255,0.06);
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid var(--stroke);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.16);
+        }
+        
+        .testimonial .quote {
+            font-style: italic;
+            margin-bottom: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        
+        .testimonial .author {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .guarantee {
+            background: linear-gradient(120deg, rgba(91,231,196,0.14), rgba(138,162,255,0.12));
+            border: 1px solid var(--stroke);
+            padding: 22px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 34px 0;
+            color: var(--text);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card {
+                margin: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🚀 OmniCirelPC</h1>
+        <div class="user-info">
+            <a href="/dashboard">Retour au tableau de bord</a>
+            <a href="/logout">Déconnexion</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="hero">
+            <h2>Passez à Premium</h2>
+            <p>Débloquez tout le potentiel de l'analyse crypto et IA</p>
+        </div>
+        
+        <div class="pricing-card">
+            <h3>OmniCirelPC Premium</h3>
+            <div class="price">9,99€<span>/mois</span></div>
+            
+            <ul class="features-list">
+                <li>Accès illimité à toutes les analyses</li>
+                <li>100+ cryptomonnaies suivies en temps réel</li>
+                <li>Alertes personnalisées par email</li>
+                <li>Export des données en CSV/Excel</li>
+                <li>Aucune publicité</li>
+                <li>Support prioritaire 24/7</li>
+                <li>Analyses prédictives avancées</li>
+                <li>Accès aux fonctionnalités futures</li>
+            </ul>
+            
+            <form action="/create-checkout-session" method="POST">
+                <script src="https://js.stripe.com/v3/"></script>
+                <button type="submit" class="btn-premium">S'abonner maintenant</button>
+            </form>
+            
+            <p style="margin-top: 20px; opacity: 0.8;">
+                Résiliable à tout moment • Essai de 7 jours gratuit • Paiement sécurisé Stripe
+            </p>
+        </div>
+        
+        <div class="comparison">
+            <div class="comparison-card">
+                <h3>🆓 Version Gratuite</h3>
+                <ul>
+                    <li class="no">5 articles par jour</li>
+                    <li class="no">Analyses basiques</li>
+                    <li class="no">Publicités incluses</li>
+                    <li class="no">Export limité</li>
+                    <li class="no">Support communautaire</li>
+                    <li class="no">Alertes par email</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-card premium">
+                <h3>⭐ Version Premium</h3>
+                <ul>
+                    <li class="yes">Articles illimités</li>
+                    <li class="yes">Analyses avancées</li>
+                    <li class="yes">Aucune publicité</li>
+                    <li class="yes">Export complet CSV/Excel</li>
+                    <li class="yes">Support prioritaire 24/7</li>
+                    <li class="yes">Alertes personnalisées</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="testimonials">
+            <h3>Ce que disent nos utilisateurs</h3>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="quote">"OmniCirelPC Premium m'a permis de prendre de meilleures décisions d'investissement. Les analyses sont très précises!"</div>
+                    <div class="author">- Marc T., Trader</div>
+                </div>
+                <div class="testimonial">
+                    <div class="quote">"Le rapport qualité-prix est excellent. Je gagne beaucoup plus que ce que je paie en abonnement."</div>
+                    <div class="author">- Sophie L., Investisseur</div>
+                </div>
+                <div class="testimonial">
+                    <div class="quote">"L'export CSV et les alertes par email sont des fonctionnalités indispensables pour mon activité."</div>
+                    <div class="author">- David K., Analyste</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="guarantee">
+            <h3>🛡️ Garantie Satisfait ou Remboursé</h3>
+            <p>Si vous n'êtes pas 100% satisfait d'OmniCirelPC Premium dans les 30 premiers jours, nous vous remboursons intégralement.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.testimonial, .comparison-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.5s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
